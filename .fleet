@@ -1,0 +1,12 @@
+#!/bin/bash
+
+alias fc='fleetctl'
+alias fclm='fleetctl list-machines'
+alias fclu='fleetctl list-units'
+alias fcjf='fleetctl journal -f '
+
+function fclmg() { fleetctl list-machines | grep  $@ ;}
+function fclug() { fleetctl list-units | grep  $@ ;}
+function fcssh() { fleetctl ssh $@ ;}
+function fcjfl() { fleetctl journal -f --lines=$@ ; }
+# function fcres() { fleetctl ssh $@ sudo systemctl restart $@ ; }

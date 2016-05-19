@@ -1,0 +1,13 @@
+#!/bin/bash
+
+alias l='ls -lta'
+alias c='cd ~/Code'
+
+function pid {
+  directory=$(basename $(pwd))
+  ps -ef | grep Java | grep ${directory} | awk '{print $2}'
+}
+
+function kpid {
+  kill $(pid)
+}

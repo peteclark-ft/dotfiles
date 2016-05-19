@@ -1,0 +1,30 @@
+#!/bin/bash
+
+green="\[$(tput setaf 2)\]"
+orange="\[$(tput setaf 166)\]"
+yellow="\[$(tput setaf 11)\]"
+purple="\[$(tput setaf 93)\]"
+light_green="\[$(tput setaf 77)\]"
+reset="\[$(tput sgr0)\]"
+
+function b {
+  git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'}
+}
+
+function b_dirty {
+  local reset=$(tput sgr0)
+  local light_green=$(tput setaf 77)
+  local purple=$(tput setaf 93)
+
+  if $(! git status -s &> /dev/null); then
+    return
+  else
+    if [ "$(git status --porcelain)" == "" ]; then
+      echo "${purple}on $(b)${reset}"
+    else
+      echo "${light_green}on $(b)*${reset}"
+    fi
+  fi
+}
+
+export PS1="${yellow}[\u]${reset}@${orange}\H${reset}: \w \$(b_dirty)\n$ "
