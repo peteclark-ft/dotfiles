@@ -3,4 +3,5 @@
 #export FLEETCTL_TUNNEL=dynpub-uk-tunnel-up.ft.com
 #export FLEETCTL_TUNNEL=preprod-uk-tunnel-up.ft.com
 
-alias dynssh='ssh dynpub-uk-tunnel-up.ft.com'
+alias dynssh='export FLEETCTL_TUNNEL=dynpub-uk-tunnel-up.ft.com && ssh dynpub-uk-tunnel-up.ft.com'
+alias ppssh='export FLEETCTL_TUNNEL=preprod-uk-tunnel-up.ft.com && ssh pre-prod-tunnel-up.ft.com'

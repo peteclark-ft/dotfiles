@@ -1,0 +1,4 @@
+#!/bin/bash
+
+alias commit='git add --all && git commit -m $@'
+alias gpushmaster='git push origin master'
