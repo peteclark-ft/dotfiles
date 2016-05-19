@@ -14,15 +14,15 @@ function b {
 function b_dirty {
   local reset=$(tput sgr0)
   local light_green=$(tput setaf 77)
-  local purple=$(tput setaf 93)
+  local red=$(tput setaf 196)
 
   if $(! git status -s &> /dev/null); then
     return
   else
     if [ "$(git status --porcelain)" == "" ]; then
-      echo "${purple}on $(b)${reset}"
+      echo "${light_green}on $(b)${reset}"
     else
-      echo "${light_green}on $(b)*${reset}"
+      echo "${red}on $(b)*${reset}"
     fi
   fi
 }
