@@ -1,3 +1,4 @@
 #!/bin/bash
 
-export GOPATH=~/Code/gocode
+export GOPATH=~/Code/go
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:~/Code/go/bin
