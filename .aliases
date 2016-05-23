@@ -1,5 +1,6 @@
 #!/bin/bash
 
+## General
 alias l='ls -lta'
 alias c='cd ~/Code'
 
@@ -11,3 +12,8 @@ function pid {
 function kpid {
   kill $(pid)
 }
+
+## Code
+alias gobin='cd ${GOPATH}/bin'
+alias goft='cd ${GOPATH}/src/github.com/Financial-Times'
+alias gopete='cd ${GOPATH}/src/github.com/peteclark-ft'
