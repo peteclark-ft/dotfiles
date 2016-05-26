@@ -28,7 +28,7 @@ function git_check_branch {
   # Regular text Colours
   reset=$(tput sgr0)
   red=$(tput setaf 196)
-  blue=$(tput setaf 27)
+  blue=$(tput setaf 39)
   light_green=$(tput setaf 77)
 
   if $(! git status -s &> /dev/null); then
