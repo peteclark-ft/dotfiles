@@ -11,7 +11,7 @@ function b {
   git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'}
 }
 
-function check_pull {
+function git_check_pull {
   LOCAL=$(git rev-parse @)
   REMOTE=$(git rev-parse @{u})
   BASE=$(git merge-base @ @{u})
@@ -26,7 +26,7 @@ function check_pull {
   fi
 }
 
-function check_branch {
+function git_check_branch {
   local reset=$(tput sgr0)
   local light_green=$(tput setaf 77)
   local red=$(tput setaf 196)
@@ -35,11 +35,11 @@ function check_branch {
     return
   else
     if [ "$(git status --porcelain)" == "" ]; then
-      echo "${light_green}on $(b)${reset} $(check_pull 2> /dev/null)"
+      echo "${light_green}on $(b)${reset} $(git_check_pull 2> /dev/null)"
     else
-      echo "${red}on $(b)*${reset} $(check_pull 2> /dev/null)"
+      echo "${red}on $(b)*${reset} $(git_check_pull 2> /dev/null)"
     fi
   fi
 }
 
-export PS1="${yellow}[\u]${reset}@${orange}\H${reset}: \w \$(check_branch)\n$ "
+export PS1="${yellow}[\u]${reset}@${orange}\H${reset}: \w \$(git_check_branch)\n$ "
