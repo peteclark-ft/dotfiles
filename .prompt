@@ -1,36 +1,39 @@
 #!/bin/bash
 
-green="\[$(tput setaf 2)\]"
-orange="\[$(tput setaf 166)\]"
-yellow="\[$(tput setaf 11)\]"
-purple="\[$(tput setaf 93)\]"
-light_green="\[$(tput setaf 77)\]"
-reset="\[$(tput sgr0)\]"
+# Prompt Compatible Colours
+ps_orange="\[$(tput setaf 166)\]"
+ps_yellow="\[$(tput setaf 11)\]"
+ps_reset="\[$(tput sgr0)\]"
+ps_green="\[$(tput setaf 2)\]"
+ps_purple="\[$(tput setaf 93)\]"
+ps_light_green="\[$(tput setaf 77)\]"
 
+# Regular text Colours
+reset=$(tput sgr0)
+red=$(tput setaf 196)
+blue=$(tput setaf 27)
+light_green=$(tput setaf 77)
+
+# Current working branch
 function b {
   git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'}
 }
 
+# Check whether a git pull is required
 function git_check_pull {
-  LOCAL=$(git rev-parse @)
-  REMOTE=$(git rev-parse @{u})
-  BASE=$(git merge-base @ @{u})
+  local local_branch=$(git rev-parse @)
+  local remote_branch=$(git rev-parse @{u})
+  local base_branch=$(git merge-base @ @{u})
 
-  local reset=$(tput sgr0)
-  local blue=$(tput setaf 27)
-
-  if [ $LOCAL = $REMOTE ]; then
-    echo ""
-  elif [ $LOCAL = $BASE ]; then
+  if [ ${local_branch} = ${remote_branch} ]; then
+    return
+  elif [ ${local_branch} = ${base_branch} ]; then
     echo "${blue}<pull required>${reset}"
   fi
 }
 
+# Check whether a commit is required and return branch
 function git_check_branch {
-  local reset=$(tput sgr0)
-  local light_green=$(tput setaf 77)
-  local red=$(tput setaf 196)
-
   if $(! git status -s &> /dev/null); then
     return
   else
@@ -42,4 +45,4 @@ function git_check_branch {
   fi
 }
 
-export PS1="${yellow}[\u]${reset}@${orange}\H${reset}: \w \$(git_check_branch)\n$ "
+export PS1="${ps_yellow}[\u]${ps_reset}@${ps_orange}\H${ps_reset}: \w \$(git_check_branch)\n$ "
