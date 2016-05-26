@@ -4,15 +4,6 @@
 ps_orange="\[$(tput setaf 166)\]"
 ps_yellow="\[$(tput setaf 11)\]"
 ps_reset="\[$(tput sgr0)\]"
-ps_green="\[$(tput setaf 2)\]"
-ps_purple="\[$(tput setaf 93)\]"
-ps_light_green="\[$(tput setaf 77)\]"
-
-# Regular text Colours
-reset=$(tput sgr0)
-red=$(tput setaf 196)
-blue=$(tput setaf 27)
-light_green=$(tput setaf 77)
 
 # Current working branch
 function b {
@@ -28,21 +19,31 @@ function git_check_pull {
   if [ ${local_branch} = ${remote_branch} ]; then
     return
   elif [ ${local_branch} = ${base_branch} ]; then
-    echo "${blue}<pull required>${reset}"
+    echo "<pull required>"
   fi
 }
 
 # Check whether a commit is required and return branch
 function git_check_branch {
+  # Regular text Colours
+  reset=$(tput sgr0)
+  red=$(tput setaf 196)
+  blue=$(tput setaf 27)
+  light_green=$(tput setaf 77)
+
   if $(! git status -s &> /dev/null); then
     return
   else
     if [ "$(git status --porcelain)" == "" ]; then
-      echo "${light_green}on $(b)${reset} $(git_check_pull 2> /dev/null)"
+      echo "${light_green}on $(b) ${blue}$(git_check_pull 2> /dev/null)${reset}"
     else
-      echo "${red}on $(b)*${reset} $(git_check_pull 2> /dev/null)"
+      echo "${red}on $(b)* ${blue}$(git_check_pull 2> /dev/null)${reset}"
     fi
   fi
 }
 
 export PS1="${ps_yellow}[\u]${ps_reset}@${ps_orange}\H${ps_reset}: \w \$(git_check_branch)\n$ "
+
+unset ps_orange
+unset ps_yellow
+unset ps_reset
