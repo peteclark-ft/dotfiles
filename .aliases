@@ -3,6 +3,7 @@
 ## General
 alias l='ls -lta'
 alias c='cd ~/Code'
+alias ports='lsof -i'
 
 function pid {
   directory=$(basename $(pwd))

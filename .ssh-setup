@@ -13,3 +13,19 @@ function reset_dynssh {
 function reset_ppssh {
   sed -i.backup '/preprod-uk-tunnel-up.ft.com/d' ~/.ssh/known_hosts
 }
+
+function dynsshp {
+  if [[ -z $1 ]]; then
+    echo "Usage - dynsshp [cluster-host:port]"
+  fi
+
+  ssh -L 9000:$1 core@dynpub-uk-tunnel-up.ft.com
+}
+
+function ppsshp {
+  if [[ -z $1 ]]; then
+    echo "Usage - ppsshp [cluster-host:port]"
+  fi
+
+  ssh -L 9000:$1 core@preprod-uk-tunnel-up.ft.com
+}
