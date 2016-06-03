@@ -5,6 +5,7 @@
 
 alias dynssh='export FLEETCTL_TUNNEL=dynpub-uk-tunnel-up.ft.com && ssh dynpub-uk-tunnel-up.ft.com'
 alias ppssh='export FLEETCTL_TUNNEL=pre-prod-tunnel-up.ft.com && ssh pre-prod-tunnel-up.ft.com'
+alias semssh='export FLEETCTL_TUNNEL=semantic-tunnel-up.ft.com && ssh semantic-tunnel-up.ft.com'
 
 function reset_dynssh {
   sed -i.backup '/dynpub-uk-tunnel-up.ft.com/d' ~/.ssh/known_hosts
@@ -30,4 +31,13 @@ function ppsshp {
   fi
 
   ssh -L 9000:$1 core@pre-prod-tunnel-up.ft.com
+}
+
+function semsshp {
+  if [[ -z $1 ]]; then
+    echo "Usage - semsshp [cluster-host:port]"
+    return 1
+  fi
+
+  ssh -L 9000:$1 core@semantic-tunnel-up.ft.com
 }
