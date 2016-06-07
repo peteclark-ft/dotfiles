@@ -8,3 +8,4 @@
 . ~/.dotfiles/.ssh-setup
 . ~/.dotfiles/.fleet
 . ~/.dotfiles/.git-helper
+. ~/.dotfiles/.mongo-db

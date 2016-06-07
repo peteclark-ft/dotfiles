@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function mongo_primary {
+  local mongos="1 2 3"
+  for mongo in $mongos; do
+    local result=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker exec mongodb-'${mongo}' mongo upp-store --eval "db.isMaster\(\).ismaster"' | grep -v "MongoDB shell" | grep -v "connecting to")
+    if [ "$result" == "true" ]; then
+      ssh $1 fleetctl ssh mongodb@${mongo} docker exec -i mongodb-${mongo} mongo upp-store
+      return
+    fi
+  done
+}
