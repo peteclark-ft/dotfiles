@@ -2,3 +2,4 @@
 
 alias commit='git add --all && git commit -m $@'
 alias gpushmaster='git push origin master'
+alias clean='git fetch && git reset --hard && git clean -df'
