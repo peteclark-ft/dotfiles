@@ -2,7 +2,7 @@
 
 function mongo_primary {
   if [ -z $1 ]; then
-    echo "Usage - mongo_primary <up-tunnel-url>"
+    echo "Usage - mongo_primary [up-tunnel-url]"
     return
   fi
 
