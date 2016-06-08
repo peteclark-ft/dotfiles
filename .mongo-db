@@ -4,7 +4,7 @@ function mongo_primary {
   colours
   if [ -z $1 ]; then
     echo "${amber_status} Usage - mongo_primary [up-tunnel-url]"
-    return
+    cleanup_colours && return 1
   fi
 
   local mongos="1 2 3"
@@ -13,8 +13,10 @@ function mongo_primary {
     if [ "$result" == "true" ]; then
       echo "${green_status} Connecting to Mongo Primary @ ${1}"
       ssh -t $1 'fleetctl ssh mongodb@'${mongo}' docker exec -ti mongodb-'${mongo}' mongo upp-store'
-      return
+      cleanup_colours && return 0
     fi
   done
-  cleanup_colours
+
+  echo "${red_status} There are no Primary Mongos @ ${1}!"
+  cleanup_colours && return 2
 }

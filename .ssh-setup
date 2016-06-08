@@ -19,7 +19,7 @@ function vulcanssh {
   colours
   if [[ -z $1 ]]; then
     echo "${amber_status} Usage - vulcanssh [up-tunnel-url]"
-    return 1
+    cleanup_colours && return 1
   fi
   local host=$(ssh $1 'hostname')
 
@@ -32,7 +32,7 @@ function sshp {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
     echo "${amber_status} Usage - sshp [up-tunnel-url] [port]"
-    return 1
+    cleanup_colours && return 1
   fi
 
   local host=$(ssh $1 'hostname')
