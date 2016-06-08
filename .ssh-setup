@@ -16,19 +16,27 @@ function reset_ppssh {
 }
 
 function vulcanssh {
+  colours
   if [[ -z $1 ]]; then
-    echo "Usage - vulcanssh [up-tunnel-url]"
+    echo "${amber_status} Usage - vulcanssh [up-tunnel-url]"
+    return 1
   fi
   local host=$(ssh $1 'hostname')
+
+  echo "${green_status} Forwarding Vulcan on ${host} onto localhost:9000"
   ssh -L 9000:${host}:8080 $1
+  cleanup_colours
 }
 
 function sshp {
+  colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
-    echo "Usage - sshp [up-tunnel-url] [port]"
+    echo "${amber_status} Usage - sshp [up-tunnel-url] [port]"
     return 1
   fi
 
   local host=$(ssh $1 'hostname')
+  echo "${green_status} Forwarding ${host}:$2 onto localhost:9000"
   ssh -L 9000:${host}:$2 $1
+  cleanup_colours
 }

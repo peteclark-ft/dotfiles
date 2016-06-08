@@ -1,8 +1,9 @@
 #!/bin/bash
 
 function mongo_primary {
+  colours
   if [ -z $1 ]; then
-    echo "Usage - mongo_primary [up-tunnel-url]"
+    echo "${amber_status} Usage - mongo_primary [up-tunnel-url]"
     return
   fi
 
@@ -10,9 +11,10 @@ function mongo_primary {
   for mongo in $mongos; do
     local result=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker exec mongodb-'${mongo}' mongo upp-store --eval "db.isMaster\(\).ismaster"' | grep -v "MongoDB shell" | grep -v "connecting to")
     if [ "$result" == "true" ]; then
-      echo "Connecting to Mongo Primary @ ${1}"
+      echo "${green_status} Connecting to Mongo Primary @ ${1}"
       ssh -t $1 'fleetctl ssh mongodb@'${mongo}' docker exec -ti mongodb-'${mongo}' mongo upp-store'
       return
     fi
   done
+  cleanup_colours
 }

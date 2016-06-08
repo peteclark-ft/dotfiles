@@ -1,6 +1,7 @@
 #!/bin/bash
 ## Should import all other dotfiles. Ref'd by the bash_profile
 
+. ~/.dotfiles/.colours
 . ~/.dotfiles/.environment
 . ~/.dotfiles/.aliases
 . ~/.dotfiles/.ls
