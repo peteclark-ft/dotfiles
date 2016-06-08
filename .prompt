@@ -26,10 +26,10 @@ function git_check_pull {
 # Check whether a commit is required and return branch
 function git_check_branch {
   # Regular text Colours
-  reset=$(tput sgr0)
-  red=$(tput setaf 196)
-  blue=$(tput setaf 39)
-  light_green=$(tput setaf 77)
+  local reset=$(tput sgr0)
+  local red=$(tput setaf 196)
+  local blue=$(tput setaf 39)
+  local light_green=$(tput setaf 77)
 
   if $(! git status -s &> /dev/null); then
     return
