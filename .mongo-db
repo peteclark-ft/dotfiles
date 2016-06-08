@@ -1,10 +1,16 @@
 #!/bin/bash
 
 function mongo_primary {
+  if [ -z $1 ]; then
+    echo "Usage - mongo_primary <up-tunnel-url>"
+    return
+  fi
+
   local mongos="1 2 3"
   for mongo in $mongos; do
     local result=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker exec mongodb-'${mongo}' mongo upp-store --eval "db.isMaster\(\).ismaster"' | grep -v "MongoDB shell" | grep -v "connecting to")
     if [ "$result" == "true" ]; then
+      echo "Connecting to Mongo Primary @ ${1}"
       ssh -t $1 'fleetctl ssh mongodb@'${mongo}' docker exec -ti mongodb-'${mongo}' mongo upp-store'
       return
     fi
