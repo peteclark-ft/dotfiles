@@ -15,29 +15,20 @@ function reset_ppssh {
   sed -i.backup '/pre-prod-tunnel-up.ft.com/d' ~/.ssh/known_hosts
 }
 
-function dynsshp {
+function vulcanssh {
   if [[ -z $1 ]]; then
-    echo "Usage - dynsshp [cluster-host:port]"
-    return 1
+    echo "Usage - vulcanssh [up-tunnel-url]"
   fi
-
-  ssh -L 9000:$1 core@dynpub-uk-tunnel-up.ft.com
+  local host=$(ssh $1 'hostname')
+  ssh -L 9000:${host}:8080 $1
 }
 
-function ppsshp {
-  if [[ -z $1 ]]; then
-    echo "Usage - ppsshp [cluster-host:port]"
+function sshp {
+  if [[ -z $1 ]] || [[ -z $2 ]]; then
+    echo "Usage - sshp [up-tunnel-url] [port]"
     return 1
   fi
 
-  ssh -L 9000:$1 core@pre-prod-tunnel-up.ft.com
-}
-
-function semsshp {
-  if [[ -z $1 ]]; then
-    echo "Usage - semsshp [cluster-host:port]"
-    return 1
-  fi
-
-  ssh -L 9000:$1 core@semantic-tunnel-up.ft.com
+  local host=$(ssh $1 'hostname')
+  ssh -L 9000:${host}:$2 $1
 }
