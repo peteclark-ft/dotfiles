@@ -27,3 +27,12 @@ function cleanup_colours {
   unset amber_status
   unset green_status
 }
+
+function hex_check {
+  local hex=$(echo -n $1 | hexdump | head -1 | cut -d" " -f2-)
+  local result=""
+  for pair in ${hex}; do
+    result="${result}\x$(echo ${pair} | tr \"[:lower:]\" \"[:upper:]\")"
+  done
+  echo $result
+}

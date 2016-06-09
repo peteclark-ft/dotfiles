@@ -31,11 +31,16 @@ function vulcanssh {
 function sshp {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
-    echo "${amber_status} Usage - sshp [up-tunnel-url] [port]"
+    echo "${amber_status} Usage - sshp [up-tunnel-url] [port] [:optional aws-hostname]"
     cleanup_colours && return 1
   fi
 
-  local host=$(ssh $1 'hostname')
+  if [[ -z $3 ]]; then
+    local host=$(ssh $1 'hostname')
+  else
+    local host=$3
+  fi
+
   echo "${green_status} Forwarding ${host}:$2 onto localhost:9000"
   ssh -L 9000:${host}:$2 $1
   cleanup_colours
