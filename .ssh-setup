@@ -45,11 +45,7 @@ function sshp {
     cleanup_colours && return 1
   fi
 
-  if [[ -z $3 ]]; then
-    local host=$(ssh $1 'hostname')
-  else
-    local host=$3
-  fi
+  local host=${3:-$(ssh $1 'hostname')}
 
   echo "${green_status} Forwarding ${host}:$2 onto localhost:9000"
   ssh -L 9000:${host}:$2 $1
