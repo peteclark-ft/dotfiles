@@ -7,6 +7,7 @@ function fcssh {
     cleanup_colours && return 1
   fi
 
+  echo "${green_status} Connecting to $1"
   ssh -t $1 'fleetctl ssh '$2
   cleanup_colours
 }
