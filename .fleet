@@ -19,11 +19,7 @@ function fctail {
     cleanup_colours && return 1
   fi
 
-  if [[ -z $3 ]]; then
-    lines=200
-  else
-    lines=${3}
-  fi
+  lines=${3:-200}
 
   echo "${green_status} Connecting to $1"
   ssh -t $1 'fleetctl journal -lines='$lines' -f '$2
