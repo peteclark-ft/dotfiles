@@ -1,12 +1,30 @@
 #!/bin/bash
 
-alias fc='fleetctl'
-alias fclm='fleetctl list-machines'
-alias fclu='fleetctl list-units'
-alias fcjf='fleetctl journal -f '
+function fcssh {
+  colours
+  if [[ -z $1 ]] || [[ -z $2 ]]; then
+    echo "${amber_status} Usage - fcssh [up-tunnel-url] [service-name]"
+    cleanup_colours && return 1
+  fi
 
-function fclmg() { fleetctl list-machines | grep  $@ ;}
-function fclug() { fleetctl list-units | grep  $@ ;}
-function fcssh() { fleetctl ssh $@ ;}
-function fcjfl() { fleetctl journal -f --lines=$@ ; }
-# function fcres() { fleetctl ssh $@ sudo systemctl restart $@ ; }
+  ssh -t $1 'fleetctl ssh '$2
+  cleanup_colours
+}
+
+function fctail {
+  colours
+  if [[ -z $1 ]] || [[ -z $2 ]]; then
+    echo "${amber_status} Usage - fctail [up-tunnel-url] [service-name] [:optional lines]"
+    cleanup_colours && return 1
+  fi
+
+  if [[ -z $3 ]]; then
+    lines=200
+  else
+    lines=${3}
+  fi
+
+  echo "${green_status} Connecting to $1"
+  ssh -t $1 'fleetctl journal -lines='$lines' -f '$2
+  cleanup_colours
+}
