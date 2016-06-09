@@ -30,3 +30,14 @@ function fctail {
   echo "${red_status} Closed connection to $1"
   cleanup_colours
 }
+
+function fcheck {
+  colours
+  if [[ -z $1 ]] || [[ -z $2 ]]; then
+    echo "${amber_status} Usage - fcheck [up-tunnel-url] [service-name]"
+    cleanup_colours && return 1
+  fi
+
+  ssh -t $1 'fleetctl status '$2
+  cleanup_colours
+}
