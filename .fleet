@@ -26,5 +26,6 @@ function fctail {
 
   echo "${green_status} Connecting to $1"
   ssh -t $1 'fleetctl journal -lines='$lines' -f '$2
+  echo "${red_status} Closed connection to $1"
   cleanup_colours
 }

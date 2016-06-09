@@ -9,6 +9,8 @@ function colours {
   orange="$(tput setaf 166)"
   yellow="$(tput setaf 11)"
 
+  bye=$'\xF0\x9F\x91\x8B'
+
   red_status=${red}${orb}${reset}
   amber_status=${orange}${orb}${reset}
   green_status=${light_green}${orb}${reset}
