@@ -7,12 +7,22 @@ alias dynssh='export FLEETCTL_TUNNEL=dynpub-uk-tunnel-up.ft.com && ssh dynpub-uk
 alias ppssh='export FLEETCTL_TUNNEL=pre-prod-tunnel-up.ft.com && ssh pre-prod-tunnel-up.ft.com'
 alias semssh='export FLEETCTL_TUNNEL=semantic-tunnel-up.ft.com && ssh semantic-tunnel-up.ft.com'
 
-function reset_dynssh {
-  sed -i.backup '/dynpub-uk-tunnel-up.ft.com/d' ~/.ssh/known_hosts
-}
+function remove_ssh {
+  colours
+  if [[ -z $1 ]]; then
+    echo "${amber_status} Usage - reset_ssh [up-tunnel-url]"
+    cleanup_colours && return 1
+  fi
 
-function reset_ppssh {
-  sed -i.backup '/pre-prod-tunnel-up.ft.com/d' ~/.ssh/known_hosts
+  sed -i.backup '/'${1}'/d' ~/.ssh/known_hosts
+
+  if diff ~/.ssh/known_hosts ~/.ssh/known_hosts.backup > /dev/null; then
+    echo "${red_status} Nothing was removed from the known_hosts file!"
+    cleanup_colours && return 1
+  fi
+
+  echo "${green_status} Reset ${1} in known_hosts."
+  cleanup_colours
 }
 
 function vulcanssh {
