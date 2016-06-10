@@ -37,3 +37,14 @@ function fcheck {
   ssh -t $1 'fleetctl status '$2
   cleanup_colours
 }
+
+function fcs {
+  colours
+  if [[ -z $1 ]] || [[ -z $2 ]]; then
+    echo "${amber_status} Usage - fcheck [up-tunnel-url] [service-name] [start/stop/status]"
+    cleanup_colours && return 1
+  fi
+
+  ssh -t $1 'fleetctl '$3' '$2
+  cleanup_colours
+}
