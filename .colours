@@ -8,6 +8,7 @@ function colours {
   light_green=$(tput setaf 77)
   orange="$(tput setaf 166)"
   yellow="$(tput setaf 11)"
+  purple=$(tput setaf 141)
 
   bye=$'\xF0\x9F\x91\x8B'
 

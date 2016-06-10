@@ -3,3 +3,71 @@
 alias commit='git add --all && git commit -m $@'
 alias gpushm='git push origin master'
 alias clean='git fetch && git reset --hard && git clean -df'
+
+# Current working branch
+function b {
+  git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'}
+}
+
+# Check whether a git pull is required
+function git_check_pull {
+  local local_branch=$(git rev-parse @)
+  local remote_branch=$(git rev-parse @{u})
+  local base_branch=$(git merge-base @ @{u})
+
+  if [ ${local_branch} = ${remote_branch} ]; then
+    return 0
+  elif [ ${local_branch} = ${base_branch} ]; then
+    echo "<pull required>"
+    return 1
+  fi
+}
+
+# Check whether a commit is required and return branch
+function git_check_branch {
+  colours
+  if $(! git status -s &> /dev/null); then
+    cleanup_colours && return
+  else
+    if [ "$(git status --porcelain)" == "" ]; then
+      echo "${light_green}on $(b) ${blue}$(git_check_pull 2> /dev/null)${reset}"
+    else
+      echo "${red}on $(b)* ${blue}$(git_check_pull 2> /dev/null)${reset}"
+    fi
+  fi
+  cleanup_colours
+}
+
+function git_stats {
+  colours
+
+  local back=$(pwd)
+  local base=${1:-"${HOME}/Code"}
+  cd ${base}
+
+  for code in $(ls -d */);
+  do
+    cd ${base}/${code}
+    if $(! git status -s &> /dev/null); then
+      continue
+    fi
+
+    local clone=$(git remote show origin | grep Fetch | awk '{print $3}')
+    if $(git_check_pull > /dev/null); then
+      local pull_orb=""
+    else
+      local pull_orb="${blue}${orb}${reset}"
+    fi
+
+    if [ "$(git status --porcelain)" == "" ]; then
+      local clean_orb="${green_status}"
+    else
+      local clean_orb="${red_status}"
+    fi
+
+    printf "${purple}%-40s${reset} ${light_green}%-26s${reset} %85s %10s\n" ${code} $(b) ${clone} ${clean_orb}${pull_orb}
+  done
+
+  cd ${back}
+  cleanup_colours
+}
