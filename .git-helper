@@ -65,7 +65,7 @@ function git_stats {
       local clean_orb="${red_status}"
     fi
 
-    printf "${purple}%-40s${reset} ${light_green}%-26s${reset} %85s %10s\n" ${code} $(b) ${clone} ${clean_orb}${pull_orb}
+    printf "${purple}%-40s${reset} ${light_green}%-26s${reset} %85s      %-20s\n" ${code} $(b) ${clone} ${clean_orb}${pull_orb}
   done
 
   cd ${back}
