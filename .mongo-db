@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function mongo_primary {
+function primary_mongo {
   colours
   if [ -z $1 ]; then
     echo "${amber_status} Usage - mongo_primary [up-tunnel-url]"
