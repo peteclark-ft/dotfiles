@@ -1,8 +1,12 @@
 #!/bin/bash
 
 alias commit='git add --all && git commit -m $@'
-alias gpushm='git push origin master'
 alias clean='git fetch && git reset --hard && git clean -df'
+alias p='git push'
+
+function branch {
+  git branch ${1} && git push --set-upstream origin ${1}
+}
 
 # Current working branch
 function b {
