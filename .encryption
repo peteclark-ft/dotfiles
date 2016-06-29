@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function encrypt {
+  cp $1 $1.bk
+  openssl enc -aes-256-cbc -salt -in $1 -out $1.secret
+}
+
+function unencrypt {
+  cp $1.secret $1.secret.bk
+  openssl enc -aes-256-cbc -d -in $1.secret -out $1
+}
+
+function encrypt_cleanup {
+  rm -f *.bk
+}

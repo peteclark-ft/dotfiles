@@ -10,3 +10,4 @@
 . ~/.dotfiles/.git-helper
 . ~/.dotfiles/.prompt
 . ~/.dotfiles/.mongo-db
+. ~/.dotfiles/.encryption
