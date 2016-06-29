@@ -8,3 +8,7 @@ export sempub="semantic-uk-tunnel-up.ft.com"
 export preprod="pre-prod-tunnel-up.ft.com"
 export prod_uk="prod-uk-tunnel-up.ft.com"
 export prod_us="prod-us-tunnel-up.ft.com"
+
+export pub_xp="pub-xp-up.ft.com"
+export pub_preprod="pub-pre-prod-up.ft.com"
+export pub_prod_uk="pub-prod-uk-up.ft.com"
