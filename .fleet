@@ -9,7 +9,7 @@ function fcauth {
 
   local credentials=$(ssh -t $1 'fleetctl ssh deployer etcdctl get /ft/_credentials/varnish/htpasswd' 2> /dev/null | sed -n 1'p' | tr ',' '\n')
   for credential in ${credentials}; do
-    echo ${pale_green}${orb}${reset} ${credential}
+    echo "   ${pale_green}${orb}${reset} ${credential}"
   done
   cleanup_colours
 }
