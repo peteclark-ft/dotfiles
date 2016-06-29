@@ -6,6 +6,7 @@ function colours {
   red=$(tput setaf 196)
   blue=$(tput setaf 39)
   light_green=$(tput setaf 77)
+  pale_green=$(tput setaf 190)
   orange="$(tput setaf 166)"
   yellow="$(tput setaf 11)"
   purple=$(tput setaf 141)

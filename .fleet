@@ -1,5 +1,19 @@
 #!/bin/bash
 
+function fcauth {
+  colours
+  if [[ -z $1 ]]; then
+    echo "${amber_status} Usage - fcauth [url]"
+    cleanup_colours && return 1
+  fi
+
+  local credentials=$(ssh -t $1 'fleetctl ssh deployer etcdctl get /ft/_credentials/varnish/htpasswd' 2> /dev/null | sed -n 1'p' | tr ',' '\n')
+  for credential in ${credentials}; do
+    echo ${pale_green}${orb}${reset} ${credential}
+  done
+  cleanup_colours
+}
+
 function fcssh {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
