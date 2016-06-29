@@ -17,7 +17,7 @@ function fcauth {
 function fcssh {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
-    echo "${amber_status} Usage - fcssh [up-tunnel-url] [service-name]"
+    echo "${amber_status} Usage - fcssh [url] [service-name]"
     cleanup_colours && return 1
   fi
 
@@ -29,7 +29,7 @@ function fcssh {
 function fctail {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
-    echo "${amber_status} Usage - fctail [up-tunnel-url] [service-name] [:optional lines]"
+    echo "${amber_status} Usage - fctail [url] [service-name] [:optional lines]"
     cleanup_colours && return 1
   fi
 
@@ -44,7 +44,7 @@ function fctail {
 function fcheck {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
-    echo "${amber_status} Usage - fcheck [up-tunnel-url] [service-name]"
+    echo "${amber_status} Usage - fcheck [url] [service-name]"
     cleanup_colours && return 1
   fi
 
@@ -55,7 +55,7 @@ function fcheck {
 function fcs {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
-    echo "${amber_status} Usage - fcheck [up-tunnel-url] [service-name] [start/stop/status]"
+    echo "${amber_status} Usage - fcheck [url] [service-name] [start/stop/status]"
     cleanup_colours && return 1
   fi
 
