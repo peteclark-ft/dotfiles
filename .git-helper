@@ -6,6 +6,7 @@ alias p='git push'
 
 function branch {
   git branch ${1} && git push --set-upstream origin ${1}
+  git checkout ${1}
 }
 
 # Current working branch
