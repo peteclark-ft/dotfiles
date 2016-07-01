@@ -4,7 +4,7 @@
 alias l='ls -lta'
 alias c='cd ~/Code'
 alias ports='lsof -i'
-alias ledger='ledger -f ~/finances/ledger.dat'
+#alias ledger='ledger -f ~/finances/ledger.dat'
 
 function pid {
   directory=$(basename $(pwd))

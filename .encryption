@@ -1,13 +1,32 @@
 #!/bin/bash
 
 function encrypt {
-  cp $1 $1.bk
-  openssl enc -aes-256-cbc -salt -in $1 -out $1.secret
+  if [ ! -d ./backups ]; then
+    mkdir backups
+  fi
+
+  cp $1 ./backups/$1.bk
+
+  if [ -z $2 ]; then
+    openssl enc -aes-256-cbc -salt -in $1 -out $1.secret
+  else
+    openssl enc -aes-256-cbc -salt -in $1 -out $1.secret -k $2
+  fi
+
 }
 
-function unencrypt {
-  cp $1.secret $1.secret.bk
-  openssl enc -aes-256-cbc -d -in $1.secret -out $1
+function decrypt {
+  if [ ! -d ./backups ]; then
+    mkdir backups
+  fi
+
+  cp $1 ./backups/$1.bk
+
+  if [ -z $2 ]; then
+    openssl enc -aes-256-cbc -d -in ${1} -out ${1%%.secret}
+  else
+    openssl enc -aes-256-cbc -d -in ${1} -out ${1%%.secret} -k $2
+  fi
 }
 
 function encrypt_cleanup {
