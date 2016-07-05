@@ -6,6 +6,7 @@ alias c='cd ~/Code'
 alias ports='lsof -i'
 alias fin='ledger -f ~/finances/secret/ledger.dat'
 alias finb='ledger -f ~/finances/secret/ledger.dat -f ~/finances/secret/budgets.dat'
+alias serve='ruby -run -ehttpd . -p9000'
 
 function pid {
   directory=$(basename $(pwd))
