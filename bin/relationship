@@ -9,4 +9,4 @@ compare_to = date.today()
 
 delta = relativedelta.relativedelta(compare_to, start_date);
 
-print "It's been", delta.months, "months. 💩  + 🐣"
+print "It's been", delta.months, "months,", delta.days, "days. 💩  + 🐣"
