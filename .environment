@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export GOPATH=~/Code/go
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:~/Code/go/bin:~/Third-Party/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:~/Code/go/bin:~/Third-Party/bin:~/.dotfiles/bin
 
 export dynpub="dynpub-uk-tunnel-up.ft.com"
 export sempub="semantic-uk-tunnel-up.ft.com"
@@ -12,3 +12,5 @@ export prod_us="prod-us-tunnel-up.ft.com"
 export pub_xp="pub-xp-tunnel-up.ft.com"
 export pub_preprod="pub-pre-prod-tunnel-up.ft.com"
 export pub_prod_uk="pub-prod-uk-tunnel-up.ft.com"
+
+export PYTHONPATH="/usr/local/lib/python2.7/site-packages"

@@ -1,0 +1,19 @@
+#!/usr/local/bin/python
+# coding=utf-8
+
+from datetime import date;
+
+compare_to = date.today()
+payday = date.today().replace(day=27)
+
+if payday < compare_to:
+  payday = payday.replace(day=27, month=(payday.month + 1))
+
+days_until = ((payday - compare_to).days)
+
+if days_until == 1:
+  print "Pay day's tomorrow! 😫"
+elif days_until == 0:
+  print "It's today! 🎊  🍾"
+else:
+  print "It's", days_until, "days until pay day. 😒"
