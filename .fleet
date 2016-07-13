@@ -55,10 +55,26 @@ function fcheck {
 function fcs {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
-    echo "${amber_status} Usage - fcheck [url] [service-name] [start/stop/status]"
+    echo "${amber_status} Usage - fcs [url] [service-name] [start/stop/status]"
     cleanup_colours && return 1
   fi
 
   ssh -t $1 'fleetctl '$3' '$2
+  cleanup_colours
+}
+
+function coreos {
+  colours
+  if [[ -z $1 ]]; then
+    echo "${amber_status} Usage - coreos [url]"
+    cleanup_colours && return 1
+  fi
+
+  machines=$(ssh -t $1 'fleetctl list-machines' 2> /dev/null | awk '{print $1}' | grep -v MACHINE | cut -d'.' -f1)
+  for machine in ${machines}; do
+    echo "${green_status} Machine ID: ${machine}"
+    ssh -t $1 'fleetctl ssh '$machine' cat /etc/motd' 2> /dev/null | grep stable
+    echo ""
+  done
   cleanup_colours
 }
