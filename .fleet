@@ -63,7 +63,7 @@ function fcs {
   cleanup_colours
 }
 
-function coreos {
+function coreos_version {
   colours
   if [[ -z $1 ]]; then
     echo "${amber_status} Usage - coreos [url]"
