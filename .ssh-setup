@@ -58,9 +58,9 @@ function sshp {
   fi
 
   if [[ -z $3 ]]; then
-    local host=$(ssh $1 'hostname')
+    local host=$(ssh -t $1 'hostname')
   else
-    local host=$(awsh $1 $3)
+    local host=$(ssh -t $1 'fleetctl ssh '$3' hostname')
   fi
 
   echo "${green_status} Forwarding ${host}:$2 onto localhost:9000"
