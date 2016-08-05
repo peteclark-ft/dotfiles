@@ -4,7 +4,7 @@
 alias l='ls -lta'
 alias c='cd ~/Code'
 alias ports='lsof -i'
-alias fin='ledger -f ~/finances/secret/ledger.dat'
+alias fin='ledger -f ~/finances/secret/ledger.dat --market'
 alias finb='ledger -f ~/finances/secret/ledger.dat -f ~/finances/secret/budgets.dat'
 alias budget='finb -p $(date +%h) budget'
 alias serve='ruby -run -ehttpd . -p9000'
