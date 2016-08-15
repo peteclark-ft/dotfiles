@@ -11,3 +11,4 @@
 . ~/.dotfiles/.prompt
 . ~/.dotfiles/.mongo-db
 . ~/.dotfiles/.encryption
+. ~/.dotfiles/.secret
