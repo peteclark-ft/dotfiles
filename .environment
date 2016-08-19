@@ -14,3 +14,4 @@ export pub_preprod="pub-pre-prod-tunnel-up.ft.com"
 export pub_prod_uk="pub-prod-uk-tunnel-up.ft.com"
 
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
+export NEO4J_TEST_URL="http://192.168.99.100:7474/db/data"
