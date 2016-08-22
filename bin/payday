@@ -1,13 +1,17 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from datetime import date;
+from datetime import date, timedelta;
 
 compare_to = date.today()
 payday = date.today().replace(day=27)
 
 if payday < compare_to:
   payday = payday.replace(day=27, month=(payday.month + 1))
+
+if payday.weekday() > 4:
+    reduce_by = payday.weekday() - 4
+    payday = payday - timedelta(days=reduce_by)
 
 days_until = ((payday - compare_to).days)
 
