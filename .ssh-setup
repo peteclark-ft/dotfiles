@@ -45,7 +45,7 @@ function awsh {
     cleanup_colours && return 1
   fi
 
-  local host=$(ssh -t $1 'fleetctl ssh '$2' hostname' 2> /dev/null)
+  local host=$(ssh $1 'fleetctl ssh '$2' hostname' 2> /dev/null)
   echo $host
   cleanup_colours
 }
@@ -58,9 +58,9 @@ function sshp {
   fi
 
   if [[ -z $3 ]]; then
-    local h=$(ssh -t $1 'hostname' 2> /dev/null | tr -cd '[:print:]')
+    local h=$(ssh $1 'hostname' 2> /dev/null)
   else
-    local h=$(ssh -t $1 'fleetctl ssh '$3' hostname' 2> /dev/null | tr -cd '[:print:]')
+    local h=$(ssh $1 'fleetctl ssh '$3' hostname' 2> /dev/null)
   fi
 
   echo "${green_status} Forwarding ${h}:${2} onto localhost:9000"
