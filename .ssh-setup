@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 #export FLEETCTL_TUNNEL=dynpub-uk-tunnel-up.ft.com
 #export FLEETCTL_TUNNEL=preprod-uk-tunnel-up.ft.com
@@ -58,12 +58,13 @@ function sshp {
   fi
 
   if [[ -z $3 ]]; then
-    local host=$(ssh -t $1 'hostname')
+    local h=$(ssh -t $1 'hostname' 2> /dev/null | sed 's/.$//')
   else
-    local host=$(ssh -t $1 'fleetctl ssh '$3' hostname')
+    local h=$(ssh -t $1 'fleetctl ssh '$3' hostname' 2> /dev/null | sed 's/.$//')
   fi
 
-  echo "${green_status} Forwarding ${host}:$2 onto localhost:9000"
-  ssh -L 9000:${host}:$2 $1
+  echo "${green_status} Forwarding ${h}:${2} onto localhost:9000"
+
+  ssh -L 9000:${h}:$2 $1
   cleanup_colours
 }
