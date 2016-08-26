@@ -9,10 +9,11 @@ function primary_mongo {
 
   local mongos="1 2 3"
   for mongo in $mongos; do
-    local result=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker exec mongodb-'${mongo}' mongo upp-store --eval "db.isMaster\(\).ismaster"' | grep -v "MongoDB shell" | grep -v "connecting to")
+    local container_name=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker ps | grep mongodb-'${mongo}' | awk "{print \$NF}"')
+    local result=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker exec '${container_name}' mongo upp-store --eval "db.isMaster\(\).ismaster"' | grep -v "MongoDB shell" | grep -v "connecting to")
     if [ "$result" == "true" ]; then
       echo "${green_status} Connecting to Mongo Primary @ ${1}"
-      ssh -t $1 'fleetctl ssh mongodb@'${mongo}' docker exec -ti mongodb-'${mongo}' mongo upp-store'
+      ssh -t $1 'fleetctl ssh mongodb@'${mongo}' docker exec -ti '${container_name}' mongo upp-store'
       cleanup_colours && return 0
     fi
   done
