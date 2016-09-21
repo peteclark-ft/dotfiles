@@ -5,12 +5,13 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:~/Cod
 
 export dynpub="dynpub-uk-tunnel-up.ft.com"
 export semantic="semantic-uk-tunnel-up.ft.com"
-export preprod="pre-prod-tunnel-up.ft.com"
+export preprod="pre-prod-uk-tunnel-up.ft.com"
 export prod_uk="prod-uk-tunnel-up.ft.com"
 export prod_us="prod-us-tunnel-up.ft.com"
 export xp="xp-tunnel-up.ft.com"
 
 export pub_xp="pub-xp-tunnel-up.ft.com"
+export pub_dynpub="pub-dynpub-uk-tunnel-up.ft.com"
 export pub_preprod="pub-pre-prod-uk-tunnel-up.ft.com"
 export pub_prod_uk="pub-prod-uk-tunnel-up.ft.com"
 
