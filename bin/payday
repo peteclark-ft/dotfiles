@@ -15,8 +15,10 @@ if payday.weekday() > 4:
 
 days_until = ((payday - compare_to).days)
 
-if days_until == 1:
-  print "Pay day's tomorrow! 😫"
+if days_until <= 6 and days_until > 1:
+  print "Pay day's this week! 😣"
+elif days_until == 1:
+   print "Pay day's tomorrow! 😫"
 elif days_until == 0:
   print "It's today! 🎊  🍾"
 else:
