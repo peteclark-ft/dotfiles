@@ -21,6 +21,14 @@ function kpid {
   kill $(pid)
 }
 
+function lower {
+  cat - | tr 'A-Z' 'a-z'
+}
+
+function upper {
+  cat - | tr 'A-Z' 'a-z'
+}
+
 function vscode {
   VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*;
 }

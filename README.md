@@ -16,7 +16,8 @@ Here's a non-exhaustive list of aliases this provides:
 
 ```bash
 commit='git add --all && git commit -m $&'
-gpushmaster='git push origin master'
+p='git push'
+branch='git branch ${1} && git push --set-upstream origin ${1}'
 
 fc='fleetctl'
 fclm='fleetctl list-machines'
