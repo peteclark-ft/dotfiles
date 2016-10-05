@@ -34,6 +34,21 @@ function auth {
   cleanup_colours
 }
 
+function balance {
+  colours
+  if [[ -z $1 ]]; then
+    echo "${amber_status} Usage - balance [url]"
+    cleanup_colours && return 1
+  fi
+
+  local machines=$(ssh -t $1 'fleetctl list-machines' 2> /dev/null | awk '{print $1}' | grep -v MACHINE | cut -d'.' -f1)
+  for machine in ${machines}; do
+    echo "${green_status} Machine: ${machine} Units: $(ssh -t $1 'fleetctl list-units | grep '$machine' | wc -l' 2> /dev/null)"
+  done
+
+  cleanup_colours
+}
+
 function fcssh {
   colours
   if [[ -z $1 ]] || [[ -z $2 ]]; then
@@ -90,7 +105,7 @@ function coreos_version {
     cleanup_colours && return 1
   fi
 
-  machines=$(ssh -t $1 'fleetctl list-machines' 2> /dev/null | awk '{print $1}' | grep -v MACHINE | cut -d'.' -f1)
+  local machines=$(ssh -t $1 'fleetctl list-machines' 2> /dev/null | awk '{print $1}' | grep -v MACHINE | cut -d'.' -f1)
   for machine in ${machines}; do
     echo "${green_status} Machine ID: ${machine}"
     ssh -t $1 'fleetctl ssh '$machine' cat /etc/motd' 2> /dev/null | grep stable
