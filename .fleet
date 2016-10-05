@@ -113,3 +113,20 @@ function coreos_version {
   done
   cleanup_colours
 }
+
+function ghostbuster {
+   colours
+   if [[ -z $1 ]]; then
+     echo "${amber_status} Usage - ghostbuster [url]"
+     cleanup_colours && return 1
+   fi
+
+   local machines=$(ssh -t $1 'fleetctl list-machines' 2> /dev/null | awk '{print $1}' | grep -v MACHINE | cut -d'.' -f1)
+   for machine in ${machines}; do
+      echo "${green_status} Machine: ${machine}"
+      ssh -t $1 "fleetctl ssh "$machine" docker ps --format {{.Names}} | awk -F_ '{print \$1}' | sed 's/.\{3\}$//' | xargs -I {} sh -c 'fleetctl list-units | grep running | grep "${machine}" | grep {} | wc -l | grep -q 0 && echo {}'" 2> /dev/null
+      echo ""
+   done
+
+   cleanup_colours
+}
