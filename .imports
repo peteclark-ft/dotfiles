@@ -9,6 +9,6 @@
 . ~/.dotfiles/.fleet
 . ~/.dotfiles/.git-helper
 . ~/.dotfiles/.prompt
-. ~/.dotfiles/.mongo-db
+. ~/.dotfiles/.mongo
 . ~/.dotfiles/.encryption
 . ~/.dotfiles/.secret

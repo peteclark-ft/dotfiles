@@ -29,10 +29,6 @@ function upper {
   cat - | tr 'a-z' 'A-Z'
 }
 
-function vscode {
-  VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*;
-}
-
 ## Code
 alias gobin='cd ${GOPATH}/bin'
 alias goft='cd ${GOPATH}/src/github.com/Financial-Times'

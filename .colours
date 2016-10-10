@@ -26,6 +26,7 @@ function cleanup_colours {
   unset light_green
   unset orange
   unset yellow
+  unset bye
 
   unset red_status
   unset amber_status
