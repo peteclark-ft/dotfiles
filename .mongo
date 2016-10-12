@@ -3,7 +3,7 @@
 function primary_mongo {
   colours
   if [ -z $1 ]; then
-    echo "${amber_status} Usage - mongo_primary [up-tunnel-url]"
+    echo "${amber_status} Usage - primary_mongo [up-tunnel-url]"
     cleanup_colours && return 1
   fi
 
