@@ -9,6 +9,7 @@ alias finm='ledger -f ~/finances/secret/ledger.dat --market'
 alias finb='ledger -f ~/finances/secret/ledger.dat -f ~/finances/secret/budgets.dat'
 alias budget='finb -p $(date +%h) budget'
 alias serve='ruby -run -ehttpd . -p9000'
+alias sha256='openssl dgst -sha256'
 
 eval $(thefuck --alias)
 

@@ -5,7 +5,8 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:~/Cod
 
 export dynpub="dynpub-uk-tunnel-up.ft.com"
 export semantic="semantic-uk-tunnel-up.ft.com"
-export preprod="pre-prod-uk-tunnel-up.ft.com"
+export preprod_uk="pre-prod-uk-tunnel-up.ft.com"
+export preprod_us="pre-prod-us-tunnel-up.ft.com"
 export prod_uk="prod-uk-tunnel-up.ft.com"
 export prod_us="prod-us-tunnel-up.ft.com"
 export xp="xp-tunnel-up.ft.com"
