@@ -4,8 +4,8 @@ alias commit='git add --all && git commit -m $@'
 alias clean='git fetch && git reset --hard && git clean -df'
 alias p='git push'
 
-if [ -f ~/.dotfiles/bin/.git-completion.sh ]; then
-  . ~/.dotfiles/bin/.git-completion.sh
+if [ -f ./bin/.git-completion.sh ]; then
+  . ./bin/.git-completion.sh
 fi
 
 function branch {
