@@ -1,16 +1,14 @@
 #!/bin/bash
 ## Should import all other dotfiles. Ref'd by the bash_profile
 
-cd $(dirname $BASH_SOURCE)
-
-. ./.colours
-. ./.environment
-. ./.aliases
-. ./.ls
-. ./.ssh-setup
-. ./.fleet
-. ./.git-helper
-. ./.prompt
-. ./.mongo
-. ./.encryption
-. ./.secret
+. ~/.dotfiles/.colours
+. ~/.dotfiles/.environment
+. ~/.dotfiles/.aliases
+. ~/.dotfiles/.ls
+. ~/.dotfiles/.ssh-setup
+. ~/.dotfiles/.fleet
+. ~/.dotfiles/.git-helper
+. ~/.dotfiles/.prompt
+. ~/.dotfiles/.mongo
+. ~/.dotfiles/.encryption
+. ~/.dotfiles/.secret
