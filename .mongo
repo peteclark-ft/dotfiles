@@ -21,3 +21,28 @@ function primary_mongo {
   echo "${red_status} There are no Primary Mongos @ ${1}!"
   cleanup_colours && return 2
 }
+
+function mongo_proxy {
+  colours
+  if [ -z $1 ]; then
+    echo "${amber_status} Usage - mongo_proxy [up-tunnel-url]"
+    cleanup_colours && return 1
+  fi
+
+  local mongos="1 2 3"
+  for mongo in $mongos; do
+    local container_name=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker ps | grep mongodb-'${mongo}' | awk "{print \$NF}"')
+    local result=$(ssh $1 'fleetctl ssh mongodb@'${mongo}' docker exec '${container_name}' mongo upp-store --eval "db.isMaster\(\).ismaster"' | grep -v "MongoDB shell" | grep -v "connecting to")
+    if [ "$result" == "true" ]; then
+      echo "${green_status} Proxying to Mongo Primary @ ${1}"
+
+      mongo_port=$((27017 + $mongo))
+      sshp $1 $mongo_port mongodb@$mongo 27017
+
+      cleanup_colours && return 0
+    fi
+  done
+
+  echo "${red_status} There are no Primary Mongos @ ${1}!"
+  cleanup_colours && return 2
+}

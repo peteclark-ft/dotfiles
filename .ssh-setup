@@ -57,14 +57,16 @@ function sshp {
     cleanup_colours && return 1
   fi
 
+  local port=${4:-9000}
+
   if [[ -z $3 ]]; then
     local h=$(ssh $1 'hostname' 2> /dev/null)
   else
     local h=$(ssh $1 'fleetctl ssh '$3' hostname' 2> /dev/null)
   fi
 
-  echo "${green_status} Forwarding ${h}:${2} onto localhost:9000"
+  echo "${green_status} Forwarding ${h}:${2} onto localhost:${port}"
 
-  ssh -L 9000:${h}:$2 $1
+  ssh -L ${port}:${h}:$2 $1
   cleanup_colours
 }
