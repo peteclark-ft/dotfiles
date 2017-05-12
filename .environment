@@ -26,7 +26,3 @@ export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
 export NEO4J_TEST_URL="http://192.168.99.100:7474/db/data"
 export MONGO_TEST_URL="192.168.99.100:27017"
 export ETCD_TEST_URL="http://localhost:2379"
-
-export DOCKER_HOST=tcp://192.168.99.100:2376
-export DOCKER_CERT_PATH=/Users/peter.clark/.docker/machine/machines/default
-export DOCKER_TLS_VERIFY=1
