@@ -12,3 +12,4 @@
 . ~/.dotfiles/.mongo
 . ~/.dotfiles/.encryption
 . ~/.dotfiles/.secret
+. ~/.dotfiles/.neo

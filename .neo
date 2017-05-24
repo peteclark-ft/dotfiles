@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function neo4j_browser {
+  colours
+  if [ -z $1 ]; then
+    echo "${amber_status} Usage - neo4j_browser [up-tunnel-url]"
+    cleanup_colours && return 1
+  fi
+
+  ssh -A -L 7474:upp-${1%-tunnel-up.ft.com}-data-write-alb-up.ft.com:80 -L 7687:upp-dynpub-uk-data-write-alb-up.ft.com:7687 core@${1}
+  cleanup_colours && return 2
+}
