@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function kafka_topic {
+   colours
+   if [[ -z $1 ]] || [[ -z $2 ]]; then
+     echo "${amber_status} Usage - kafka_topic [up-tunnel-url] [topic-name]"
+     cleanup_colours && return 1
+   fi
+
+   local topic_name=$2
+   local container_name=$(ssh $1 'fleetctl ssh kafka docker ps | grep kafka | grep -v bridge | grep -v kafka-rest-proxy | awk "{print \$1}"')
+
+   echo "${green_status} Created kafka topic ${topic_name} container ${container_name}"
+   local kafka_home=$(ssh -t $1 'fleetctl ssh kafka docker exec '${container_name}' printenv KAFKA_HOME' | tr -cd '[:print:]')
+   local zk_addr=$(ssh -t $1 'fleetctl ssh kafka docker exec '${container_name}' printenv ZK_PORT_2181_TCP_ADDR' | tr -cd '[:print:]')
+
+   ssh -t $1 'fleetctl ssh kafka docker exec '${container_name}' /bin/bash -c \"'${kafka_home}'/bin/kafka-topics.sh --create --topic '${topic_name}' --partitions 1 --replication-factor 1 --zookeeper '${zk_addr}':2181\"'
+
+   cleanup_colours && return 2
+}

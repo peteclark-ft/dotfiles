@@ -13,3 +13,4 @@
 . ~/.dotfiles/.encryption
 . ~/.dotfiles/.secret
 . ~/.dotfiles/.neo
+. ~/.dotfiles/.kafka
