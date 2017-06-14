@@ -16,5 +16,5 @@ function kafka_topic {
 
    ssh -t $1 'fleetctl ssh kafka docker exec '${container_name}' /bin/bash -c \"'${kafka_home}'/bin/kafka-topics.sh --create --topic '${topic_name}' --partitions 1 --replication-factor 1 --zookeeper '${zk_addr}':2181\"'
 
-   cleanup_colours && return 2
+   cleanup_colours
 }
