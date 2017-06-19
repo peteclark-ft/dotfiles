@@ -32,3 +32,7 @@ function decrypt {
 function encrypt_cleanup {
   rm -f *.bk
 }
+
+function generate_password {
+   openssl rand -base64 128 | sha256
+}
