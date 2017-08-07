@@ -14,3 +14,4 @@
 . ~/.dotfiles/.secret
 . ~/.dotfiles/.neo
 . ~/.dotfiles/.kafka
+. ~/.dotfiles/.k8s

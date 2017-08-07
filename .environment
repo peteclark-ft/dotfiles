@@ -4,7 +4,7 @@ export GOPATH=~/Code/go
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:~/Code/go/bin:~/Third-Party/bin:~/.dotfiles/bin
 
 export dynpub="dynpub-eu-tunnel-up.ft.com"
-export semantic="semantic-uk-tunnel-up.ft.com"
+export semantic="semantic-tunnel-up.ft.com"
 export preprod_uk="pre-prod-uk-tunnel-up.ft.com"
 export preprod_us="pre-prod-us-tunnel-up.ft.com"
 export prod_uk="prod-uk-tunnel-up.ft.com"

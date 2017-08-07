@@ -8,7 +8,7 @@ function kafka_topic {
    fi
 
    local topic_name=$2
-   local container_name=$(ssh $1 'fleetctl ssh kafka docker ps | grep kafka | grep -v bridge | grep -v kafka-rest-proxy | awk "{print \$1}"')
+   local container_name=$(ssh $1 'fleetctl ssh kafka docker ps | grep kafka | grep -v bridge | grep -v kafka-rest-proxy | grep -v kafka-lagcheck | awk "{print \$1}"')
 
    echo "${green_status} Created kafka topic ${topic_name} container ${container_name}"
    local kafka_home=$(ssh -t $1 'fleetctl ssh kafka docker exec '${container_name}' printenv KAFKA_HOME' | tr -cd '[:print:]')
