@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function jdock {
+   colours
+   if [[ -z $1 ]]; then
+     echo "${amber_status} Usage - jdock [build-name]"
+     cleanup_colours && return 1
+   fi
+
+   docker build -t $1 --build-arg="SONATYPE_USER=upp-nexus" --build-arg="SONATYPE_PASSWORD=$UPP_NEXUS_PASSWORD" .
+   cleanup_colours
+}
