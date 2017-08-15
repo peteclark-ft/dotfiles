@@ -4,7 +4,8 @@ function get_kube_env {
    if [ -z $KUBECONFIG ]; then
       echo ""
    else
-      echo "k8s/${KUBECONFIG##*/}"
+      local conf=${KUBECONFIG##*/}
+      echo "k8s/${conf%-kubeconfig}"
    fi
 }
 
