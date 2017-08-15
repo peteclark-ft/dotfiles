@@ -1,4 +1,12 @@
 #!/bin/bash
 
+function get_kube_env {
+   if [ -z $KUBECONFIG ]; then
+      echo ""
+   else
+      echo "k8s/${KUBECONFIG##*/}"
+   fi
+}
+
 alias pac-pre-prod-eu="export KUBECONFIG=~/.kube/pac-pre-prod-eu-kubeconfig"
 alias pac-pre-prod-us="export KUBECONFIG=~/.kube/pac-pre-prod-us-kubeconfig"

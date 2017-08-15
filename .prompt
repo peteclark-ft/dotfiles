@@ -6,7 +6,7 @@ ps_yellow="\[$(tput setaf 11)\]"
 ps_reset="\[$(tput sgr0)\]"
 
 # See .git-helper for function calls
-export PS1="${ps_yellow}[\u]${ps_reset}@${ps_orange}\H${ps_reset}: \w \$(git_check_branch)\n$ "
+export PS1="${ps_yellow}[\u]${ps_reset} ${ps_orange}\$(get_kube_env)${ps_reset}: \w \$(git_check_branch)\n$ "
 
 unset ps_orange
 unset ps_yellow
