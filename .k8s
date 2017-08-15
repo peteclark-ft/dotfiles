@@ -1,3 +1,4 @@
 #!/bin/bash
 
 alias pac-pre-prod-eu="export KUBECONFIG=~/.kube/pac-pre-prod-eu-kubeconfig"
+alias pac-pre-prod-us="export KUBECONFIG=~/.kube/pac-pre-prod-us-kubeconfig"
