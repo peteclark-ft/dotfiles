@@ -9,5 +9,8 @@ function get_kube_env {
    fi
 }
 
+alias pac-prod-eu="export KUBECONFIG=~/.kube/pac-prod-eu-kubeconfig"
+alias pac-prod-us="export KUBECONFIG=~/.kube/pac-prod-us-kubeconfig"
+
 alias pac-pre-prod-eu="export KUBECONFIG=~/.kube/pac-pre-prod-eu-kubeconfig"
 alias pac-pre-prod-us="export KUBECONFIG=~/.kube/pac-pre-prod-us-kubeconfig"

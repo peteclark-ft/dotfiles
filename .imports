@@ -16,3 +16,5 @@
 . ~/.dotfiles/.kafka
 . ~/.dotfiles/.k8s
 . ~/.dotfiles/.docker
+
+alias reload=". ~/.bash_profile"
