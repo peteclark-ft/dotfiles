@@ -3,10 +3,16 @@
 function neo4j_browser {
   colours
   if [ -z $1 ]; then
-    echo "${amber_status} Usage - neo4j_browser [up-tunnel-url]"
+    echo "${amber_status} Usage - neo4j_browser [up-tunnel-url] [test]"
     cleanup_colours && return 1
   fi
 
-  ssh -A -L 7474:upp-${1%-tunnel-up.ft.com}-data-write-alb-up.ft.com:80 -L 7687:upp-dynpub-uk-data-write-alb-up.ft.com:7687 core@${1}
+  local neo_name="upp-test"
+  if [ -z $2 ]; then
+     local neo_name="upp-${1%-tunnel-up.ft.com}"
+  fi
+
+  echo "${neo_name}"
+  ssh -A -L 7474:${neo_name}-data-write-alb-up.ft.com:80 -L 7687:upp-dynpub-uk-data-write-alb-up.ft.com:7687 core@${1}
   cleanup_colours && return 2
 }
