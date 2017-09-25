@@ -9,6 +9,8 @@ function get_kube_env {
    fi
 }
 
+source <(kubectl completion bash)
+
 alias pac-prod-eu="export KUBECONFIG=~/.kube/pac-prod-eu-kubeconfig"
 alias pac-prod-us="export KUBECONFIG=~/.kube/pac-prod-us-kubeconfig"
 
