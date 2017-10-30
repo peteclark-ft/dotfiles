@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function ftvault {
+   # Set the personal access token to use for authentication with Vault.
+   export VAULT_AUTH_GITHUB_TOKEN="$(scope work vault | jq -r .token)"
+
+   # Set the Vault cluster address.
+   export VAULT_ADDR=https://vault.in.ft.com
+
+   vault auth --method github
+}

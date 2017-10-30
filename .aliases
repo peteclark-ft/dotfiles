@@ -32,6 +32,12 @@ function upper {
   cat - | tr 'a-z' 'A-Z'
 }
 
+# Prevent `vault write` commands from being stored in history.
+function vault () {
+  command vault "$@"
+  if [[ $1 == write ]]; then history -d $((HISTCMD-1)) &> /dev/null; fi
+}
+
 ## Code
 alias gobin='cd ${GOPATH}/bin'
 alias goft='cd ${GOPATH}/src/github.com/Financial-Times'

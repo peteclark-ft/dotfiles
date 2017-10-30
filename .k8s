@@ -20,4 +20,4 @@ alias pac-pre-prod-us="export KUBECONFIG=~/.kube/pac-pre-prod-us-kubeconfig"
 alias delivery-pre-prod-eu="export KUBECONFIG=~/.kube/k8s-delivery-upp-kubeconfig"
 alias pub-pre-prod-eu="export KUBECONFIG=~/.kube/k8s-publishing-upp-kubeconfig"
 
-alias kubectlsys='kubectl --namespace kube-system'
+alias syskubectl='kubectl --namespace kube-system'

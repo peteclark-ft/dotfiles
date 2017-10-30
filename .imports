@@ -16,6 +16,8 @@
 . ~/.dotfiles/.kafka
 . ~/.dotfiles/.k8s
 . ~/.dotfiles/.docker
+. ~/.dotfiles/.vault-ft
+. ~/.dotfiles/.cmdb
 
 alias reload=". ~/.bash_profile"
 
