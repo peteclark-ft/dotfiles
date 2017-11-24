@@ -13,6 +13,23 @@ function cmdb_child_system {
 
    echo "Creating CMDB relationship ${child} isChildOf ${parent}"
 
-   curl -XPOST https://cmdb.in.ft.com/v3/relationships/system/${child}/isChildOf/system/${parent} -H'x-api-key: ${apiKey}'
+   curl -XPOST https://cmdb.in.ft.com/v3/relationships/system/${child}/isChildOf/system/${parent} -H"x-api-key: ${apiKey}"
+   cleanup_colours
+}
+
+function cmdb_delete_child_system {
+   colours
+   if [[ -z $1 ]] || [[ -z $2 ]]; then
+     echo "${amber_status} Usage - child_system [parent] [child]"
+     cleanup_colours && return 1
+   fi
+
+   local parent=$1
+   local child=$2
+   local apiKey=$(scope cmdb | jq -r .apiKey)
+
+   echo "Deleting CMDB relationship ${child} isChildOf ${parent}"
+
+   curl -XDELETE https://cmdb.in.ft.com/v3/relationships/system/${child}/isChildOf/system/${parent} -H"x-api-key: ${apiKey}"
    cleanup_colours
 }

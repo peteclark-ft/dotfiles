@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+from datetime import date;
+from dateutil import relativedelta;
+
+start_date = date(1985, 01, 23)
+# compare_to = date.today()
+compare_to = date(1988, 04, 24)
+
+print (compare_to - start_date).total_seconds()

@@ -12,6 +12,6 @@ function neo4j_browser {
      local neo_name="upp-${1%-tunnel-up.ft.com}"
   fi
 
-  ssh -A -L 7474:${neo_name}-data-write-alb-up.ft.com:80 -L 7687:${neo_name}-data-write-alb-up.ft.com:7687 core@${1}
+  ssh -A -L 7474:${neo_name}-data-write-alb-up.ft.com:7474 -L 7687:${neo_name}-data-write-alb-up.ft.com:7687 core@${1}
   cleanup_colours && return 2
 }
