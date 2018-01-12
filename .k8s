@@ -31,6 +31,10 @@ alias pac-staging-us="export KUBECONFIG=~/.kube/pac-staging-us-kubeconfig"
 alias delivery-dev-eu="export KUBECONFIG=~/.kube/upp-k8s-dev-delivery-eu-kubeconfig"
 alias delivery-prod-eu="export KUBECONFIG=~/.kube/upp-prod-delivery-eu-kubeconfig"
 
+alias delivery-prod-us="export KUBECONFIG=~/.kube/upp-prod-delivery-us-kubeconfig"
+
+alias publish-prod-eu="export KUBECONFIG=~/.kube/upp-prod-publish-eu-kubeconfig"
+
 #alias delivery-pre-prod-eu="export KUBECONFIG=~/.kube/k8s-delivery-upp-kubeconfig"
 alias pub-pre-prod-eu="export KUBECONFIG=~/.kube/k8s-publishing-upp-kubeconfig"
 
