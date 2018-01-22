@@ -18,6 +18,7 @@
 . ~/.dotfiles/.docker
 . ~/.dotfiles/.vault-ft
 . ~/.dotfiles/.cmdb
+. ~/.dotfiles/.pac
 
 alias reload=". ~/.bash_profile"
 
