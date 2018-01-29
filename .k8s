@@ -17,7 +17,13 @@ function k8sauth {
       cleanup_colours && return 1
    fi
 
-   kubectl get secrets varnish-auth -ojson | jq -r '.data.".htpasswd"'  | base64 -D
+   local authKey="varnish-auth"
+
+   if [[ $(kubectl get secrets | grep -e "^${authKey}" | wc -l) -eq 0 ]]; then
+      local authKey="pub-varnish-auth"
+   fi
+
+   kubectl get secrets ${authKey} -ojson | jq -r '.data.".htpasswd"'  | base64 -D
 }
 
 source <(kubectl completion bash)
@@ -34,6 +40,11 @@ alias delivery-prod-us="export KUBECONFIG=~/.kube/upp-prod-delivery-us-kubeconfi
 
 alias publish-dev-eu="export KUBECONFIG=~/.kube/upp-k8s-dev-publish-eu-kubeconfig"
 alias publish-prod-eu="export KUBECONFIG=~/.kube/upp-prod-publish-eu-kubeconfig"
+
+alias neo4j-prod-eu="export KUBECONFIG=~/.kube/upp-prod-neo4j-eu-kubeconfig"
+
+alias publish-staging-eu="export KUBECONFIG=~/.kube/upp-staging-publish-eu-kubeconfig"
+alias publish-staging-us="export KUBECONFIG=~/.kube/upp-staging-publish-us-kubeconfig"
 
 #alias delivery-pre-prod-eu="export KUBECONFIG=~/.kube/k8s-delivery-upp-kubeconfig"
 alias pub-pre-prod-eu="export KUBECONFIG=~/.kube/k8s-publishing-upp-kubeconfig"
