@@ -24,6 +24,7 @@ function k8sauth {
    fi
 
    kubectl get secrets ${authKey} -ojson | jq -r '.data.".htpasswd"'  | base64 -D
+   cleanup_colours
 }
 
 source <(kubectl completion bash)
@@ -35,6 +36,10 @@ alias pac-staging-eu="export KUBECONFIG=~/.kube/pac-staging-eu-kubeconfig"
 alias pac-staging-us="export KUBECONFIG=~/.kube/pac-staging-us-kubeconfig"
 
 alias delivery-dev-eu="export KUBECONFIG=~/.kube/upp-k8s-dev-delivery-eu-kubeconfig"
+
+alias delivery-staging-eu="export KUBECONFIG=~/.kube/upp-staging-delivery-eu-kubeconfig"
+alias delivery-staging-us="export KUBECONFIG=~/.kube/upp-staging-delivery-us-kubeconfig"
+
 alias delivery-prod-eu="export KUBECONFIG=~/.kube/upp-prod-delivery-eu-kubeconfig"
 alias delivery-prod-us="export KUBECONFIG=~/.kube/upp-prod-delivery-us-kubeconfig"
 
