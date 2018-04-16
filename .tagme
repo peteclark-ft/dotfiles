@@ -1,0 +1,29 @@
+#!/bin/bash
+
+function urlencode {
+   local length="${#1}"
+   for (( i = 0; i < length; i++ )); do
+      local c="${1:i:1}"
+      case $c in
+         [a-zA-Z0-9.~_-]) printf "$c" ;;
+            *) printf '%s' "$c" | xxd -p -c1 |
+               while read c; do printf '%%%s' "$c"; done ;;
+      esac
+   done
+}
+
+function search_plot {
+   local people="$(urlencode http://www.ft.com/ontology/person/Person)"
+   local organisations="$(urlencode http://www.ft.com/ontology/organisation/Organisation)"
+   local topics="$(urlencode http://www.ft.com/ontology/Topic)"
+   local locations="$(urlencode http://www.ft.com/ontology/Location)"
+
+   colours
+   if [[ -z $1 ]]; then
+     echo "${amber_status} Usage - search_plot [query]"
+     cleanup_colours && return 1
+   fi
+
+   echo "/__concept-search-api/concepts?mode=search&q=$(urlencode "${1}")&type=${people}&type=${organisations}&type=${topics}&type=${locations}"
+   cleanup_colours
+}

@@ -19,6 +19,8 @@
 . ~/.dotfiles/.vault-ft
 . ~/.dotfiles/.cmdb
 . ~/.dotfiles/.pac
+. ~/.dotfiles/.tagme
+. ~/.dotfiles/.maths
 
 alias reload=". ~/.bash_profile"
 

@@ -32,10 +32,14 @@ source <(kubectl completion bash)
 alias pac-prod-eu="export KUBECONFIG=~/.kube/pac-prod-eu-kubeconfig"
 alias pac-prod-us="export KUBECONFIG=~/.kube/pac-prod-us-kubeconfig"
 
+alias pac-golden-corpus="export KUBECONFIG=~/.kube/pac-golden-corpus/pac-golden-corpus-kubeconfig"
+
 alias pac-staging-eu="export KUBECONFIG=~/.kube/pac-staging-eu-kubeconfig"
 alias pac-staging-us="export KUBECONFIG=~/.kube/pac-staging-us-kubeconfig"
 
 alias delivery-dev-eu="export KUBECONFIG=~/.kube/upp-k8s-dev-delivery-eu-kubeconfig"
+
+alias neo4j-staging-eu="export KUBECONFIG=~/.kube/upp-staging-neo4j-eu-kubeconfig"
 
 alias delivery-staging-eu="export KUBECONFIG=~/.kube/upp-staging-delivery-eu-kubeconfig"
 alias delivery-staging-us="export KUBECONFIG=~/.kube/upp-staging-delivery-us-kubeconfig"
@@ -45,6 +49,8 @@ alias delivery-prod-us="export KUBECONFIG=~/.kube/upp-prod-delivery-us-kubeconfi
 
 alias publish-dev-eu="export KUBECONFIG=~/.kube/upp-k8s-dev-publish-eu-kubeconfig"
 alias publish-prod-eu="export KUBECONFIG=~/.kube/upp-prod-publish-eu-kubeconfig"
+
+alias publish-prod-us="export KUBECONFIG=~/.kube/upp-prod-publish-us-kubeconfig"
 
 alias neo4j-prod-eu="export KUBECONFIG=~/.kube/upp-prod-neo4j-eu-kubeconfig"
 

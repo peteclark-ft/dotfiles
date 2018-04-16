@@ -13,8 +13,6 @@ alias twc='ledger -f ~/finances/secret/ducky.dat'
 alias serve='ruby -run -ehttpd . -p3000'
 alias sha256='openssl dgst -sha256'
 
-eval $(thefuck --alias)
-
 function pid {
   directory=$(basename $(pwd))
   ps -ef | grep Java | grep ${directory} | awk '{print $2}'

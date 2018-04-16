@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function percentile {
+   local input=$1
+   local perc=$2
+
+   local count=$(cat $input | tail -n +2 | wc -l)
+   local index=$((( ($count * $2) + 100 / 2) / 100))
+
+   cat $input | cut -d, -f 14 | tail -n +2 | sort -n | head -n ${index} | tail -1
+}
+
+function perc90 {
+   percentile $1 90
+}
+
+function perc95 {
+   percentile $1 95
+}
+
+function perc99 {
+   percentile $1 99
+}
