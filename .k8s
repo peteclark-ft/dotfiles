@@ -27,7 +27,28 @@ function k8sauth {
    cleanup_colours
 }
 
+function k8s_ssh {
+  if [[ -z $1 ]]; then
+    echo "${amber_status} Please specify a jumbox to connect to i.e. - k8s_ssh $jumpbox_eu 10.174.34.61"
+    cleanup_colours && return 1
+  fi
+
+  if [[ -z $2 ]]; then
+    echo "${amber_status} Please specify a private k8s cluster IP i.e. - k8s_ssh $jumpbox_eu 10.174.34.61"
+    cleanup_colours && return 1
+  fi
+
+  # remove the localhost ssh setting, as this will likely be invalid
+  remove_ssh localhost
+
+  echo "ssh -A core@localhost -p 2222"
+  ssh -A -L 2222:$2:22 $(whoami)@$1
+}
+
 source <(kubectl completion bash)
+
+export jumpbox_eu="jump-eu-tunnel-k8s-prod.ft.com"
+export jumpbox_us="jump-us-tunnel-k8s-prod.ft.com"
 
 alias pac-prod-eu="export KUBECONFIG=~/.kube/pac-prod-eu-kubeconfig"
 alias pac-prod-us="export KUBECONFIG=~/.kube/pac-prod-us-kubeconfig"
@@ -61,3 +82,5 @@ alias publish-staging-us="export KUBECONFIG=~/.kube/upp-staging-publish-us-kubec
 alias pub-pre-prod-eu="export KUBECONFIG=~/.kube/k8s-publishing-upp-kubeconfig"
 
 alias syskubectl='kubectl --namespace kube-system'
+
+alias ft_login='export KUBECONFIG=~/Code/content-k8s-auth-setup/kubeconfig'
